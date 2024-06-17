@@ -8,12 +8,24 @@ using System.Collections.Generic;
 
 namespace RevitTestStorage.Tests.Services
 {
-    public abstract class StorageFactory<FieldType> : StorageFactory<FieldType, Element>
-    {
+    public interface IStorageElement : IStorageElement<string> { }
+    public abstract class StorageElementFactory : StorageElementFactory<string>, IStorageElement { }
 
+    public interface IStorageElement<FieldType> : IStorageFactory<FieldType, Element> { }
+    public abstract class StorageElementFactory<FieldType> : StorageFactory<FieldType, Element>, IStorageElement<FieldType> { }
+
+    public interface IStorageProjectInfo : IStorageProjectInfo<string> { }
+    public abstract class StorageProjectInfoFactory : StorageProjectInfoFactory<string>, IStorageProjectInfo { }
+
+    public interface IStorageProjectInfo<FieldType>
+    {
+        void Save(Document document, FieldType data);
+        FieldType Load(Document document);
+        void Reset(Document document);
+        ProjectInfo GetProjectInfo(Document document);
     }
 
-    public abstract class StorageProjectInfoFactory<FieldType> : StorageFactory<FieldType, ProjectInfo>
+    public abstract class StorageProjectInfoFactory<FieldType> : StorageFactory<FieldType, ProjectInfo>, IStorageProjectInfo<FieldType>
     {
         public void Save(Document document, FieldType data)
         {
@@ -40,7 +52,15 @@ namespace RevitTestStorage.Tests.Services
         }
     }
 
-    public abstract class StorageFactory<FieldType, TElement> where TElement : Element
+    public interface IStorageFactory<FieldType, TElement> where TElement : Element
+    {
+        void Save(TElement element, FieldType data);
+        FieldType Load(TElement element);
+        void Reset(TElement element);
+        IEnumerable<TElement> Select(Document document);
+    }
+
+    public abstract class StorageFactory<FieldType, TElement> : IStorageFactory<FieldType, TElement> where TElement : Element
     {
         #region Schema
         public abstract Guid Guid { get; }
