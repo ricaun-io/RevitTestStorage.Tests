@@ -4,7 +4,7 @@ using System;
 
 namespace RevitTestStorage.Tests.Services
 {
-    public class StorageProjectInfo : StorageProjectInfoFactory<string>
+    public class StorageProjectInfo : StorageProjectInfoFactory
     {
         public override Guid Guid => new Guid("1E832DE4-C3F8-4DAE-84AF-450BAF593AC4");
         public override string FieldName => "Text";
@@ -14,7 +14,7 @@ namespace RevitTestStorage.Tests.Services
         public override AccessLevel WriteAccessLevel => AccessLevel.Vendor;
     }
 
-    public class StorageProjectInfoVendor : StorageProjectInfoFactory<string>
+    public class StorageProjectInfoVendor : StorageProjectInfoFactory
     {
         public override Guid Guid => new Guid("1E832DE4-C3F8-4DAE-84AF-450BAF593AC5");
         public override string FieldName => "Vendor";
@@ -24,7 +24,7 @@ namespace RevitTestStorage.Tests.Services
         public override AccessLevel WriteAccessLevel => AccessLevel.Vendor;
     }
 
-    public class StorageProjectInfoApplication : StorageProjectInfoFactory<string>
+    public class StorageProjectInfoApplication : StorageProjectInfoFactory
     {
         public override Guid Guid => new Guid("1E832DE4-C3F8-4DAE-84AF-450BAF593AC6");
         public override string FieldName => "Application";

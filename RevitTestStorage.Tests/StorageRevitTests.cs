@@ -17,11 +17,31 @@ namespace RevitTestStorage.Tests
             Console.WriteLine(document.Title);
         }
 
-        StorageProjectInfo storageProjectInfo = new StorageProjectInfo();
-
         [TestCase("123")]
         [TestCase("Hello World")]
         public void SaveLoadReset_String(string value)
+        {
+            IStorageProjectInfo storageProjectInfo = new StorageProjectInfo();
+            TestStorageProjectInfo(storageProjectInfo, value);
+        }
+
+        [TestCase("123")]
+        [TestCase("Hello World")]
+        public void SaveLoadReset_Vendor(string value)
+        {
+            IStorageProjectInfo storageProjectInfoVendor = new StorageProjectInfoVendor();
+            TestStorageProjectInfo_Exception(storageProjectInfoVendor, value);
+        }
+
+        [TestCase("123")]
+        [TestCase("Hello World")]
+        public void SaveLoadReset_Application(string value)
+        {
+            IStorageProjectInfo storageProjectInfoApplication = new StorageProjectInfoApplication();
+            TestStorageProjectInfo(storageProjectInfoApplication, value);
+        }
+
+        private void TestStorageProjectInfo(IStorageProjectInfo storageProjectInfo, string value)
         {
             using (Transaction transaction = new Transaction(document))
             {
@@ -34,37 +54,17 @@ namespace RevitTestStorage.Tests
             }
         }
 
-        StorageProjectInfoVendor storageProjectInfoVendor = new StorageProjectInfoVendor();
-
-        [TestCase("123")]
-        [TestCase("Hello World")]
-        public void SaveLoadReset_Vendor(string value)
+        private void TestStorageProjectInfo_Exception(IStorageProjectInfo storageProjectInfo, string value)
         {
             using (Transaction transaction = new Transaction(document))
             {
                 transaction.Start("SaveLoadReset");
-                Assert.Catch<Autodesk.Revit.Exceptions.ArgumentException>(() => storageProjectInfoVendor.Save(document, value));
-                Assert.Catch<Autodesk.Revit.Exceptions.ArgumentException>(() => storageProjectInfoVendor.Load(document));
+                Assert.Catch<Autodesk.Revit.Exceptions.ArgumentException>(() => storageProjectInfo.Save(document, value));
+                Assert.Catch<Autodesk.Revit.Exceptions.ArgumentException>(() => storageProjectInfo.Load(document));
                 transaction.Commit();
             }
         }
 
-        StorageProjectInfoApplication storageProjectInfoApplication = new StorageProjectInfoApplication();
-
-        [TestCase("123")]
-        [TestCase("Hello World")]
-        public void SaveLoadReset_Application(string value)
-        {
-            using (Transaction transaction = new Transaction(document))
-            {
-                transaction.Start("SaveLoadReset");
-                storageProjectInfoApplication.Save(document, value);
-                Assert.AreEqual(value, storageProjectInfoApplication.Load(document));
-                storageProjectInfoApplication.Reset(document);
-                Assert.AreEqual(string.Empty, storageProjectInfoApplication.Load(document));
-                transaction.Commit();
-            }
-        }
 
         [Test]
         public void Show_Schemas()
@@ -75,22 +75,22 @@ namespace RevitTestStorage.Tests
             }
         }
 
-//#if NET48
-//        [Test]
-//        public void Erase_Schemas()
-//        {
-//            foreach (var schema in Schema.ListSchemas())
-//            {
-//                try
-//                {
-//                    Schema.EraseSchemaAndAllEntities(schema, false);
-//                    Console.WriteLine(AsString(schema));
-//                }
-//                catch { }
-//            }   
-//            Assert.Ignore("EraseSchemaAndAllEntities does not work :(");
-//        }
-//#endif
+        //#if NET48
+        //        [Test]
+        //        public void Erase_Schemas()
+        //        {
+        //            foreach (var schema in Schema.ListSchemas())
+        //            {
+        //                try
+        //                {
+        //                    Schema.EraseSchemaAndAllEntities(schema, false);
+        //                    Console.WriteLine(AsString(schema));
+        //                }
+        //                catch { }
+        //            }   
+        //            Assert.Ignore("EraseSchemaAndAllEntities does not work :(");
+        //        }
+        //#endif
 
         string AsString(Schema schema)
         {
