@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitTestStorage.Tests", "RevitTestStorage.Tests\RevitTestStorage.Tests.csproj", "{C53377B1-B7D8-4A38-AB9A-348667790FB5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		2021|Any CPU = 2021|Any CPU
+		2025|Any CPU = 2025|Any CPU
+		Debug 2021|Any CPU = Debug 2021|Any CPU
+		Debug 2025|Any CPU = Debug 2025|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C53377B1-B7D8-4A38-AB9A-348667790FB5}.2021|Any CPU.ActiveCfg = 2021|Any CPU
+		{C53377B1-B7D8-4A38-AB9A-348667790FB5}.2021|Any CPU.Build.0 = 2021|Any CPU
+		{C53377B1-B7D8-4A38-AB9A-348667790FB5}.2025|Any CPU.ActiveCfg = 2025|Any CPU
+		{C53377B1-B7D8-4A38-AB9A-348667790FB5}.2025|Any CPU.Build.0 = 2025|Any CPU
+		{C53377B1-B7D8-4A38-AB9A-348667790FB5}.Debug 2021|Any CPU.ActiveCfg = Debug 2021|Any CPU
+		{C53377B1-B7D8-4A38-AB9A-348667790FB5}.Debug 2021|Any CPU.Build.0 = Debug 2021|Any CPU
+		{C53377B1-B7D8-4A38-AB9A-348667790FB5}.Debug 2025|Any CPU.ActiveCfg = Debug 2025|Any CPU
+		{C53377B1-B7D8-4A38-AB9A-348667790FB5}.Debug 2025|Any CPU.Build.0 = Debug 2025|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DBE06CC2-67BB-41AD-B6ED-25C48606F180}
+	EndGlobalSection
+EndGlobal
