@@ -8,6 +8,10 @@ RevitTest project to test `ExtensibleStorage` with `AccessLevel` vendor and appl
 
 This project use the [ricaun.RevitTest](https://ricaun.com/RevitTest) test framework.
 
+## Problem Description
+
+Project is based on the problem described in the [Revit API Forum](https://forums.autodesk.com/t5/revit-api-forum/revit-design-automation-extensible-storage-quot-writing-of/td-p/12833018).
+
 ## Video
 
 Videos in English about this project.
